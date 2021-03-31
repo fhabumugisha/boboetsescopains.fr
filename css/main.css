@@ -1,8 +1,18 @@
 
-.contact-bloc__links{
-    display: inline-block;
-    list-style: none;
+
+.btn-primary {
+    color: #fff;
+    background-color: #246191;
+    border-color: #80c4f6;
 }
-.contact-bloc__link {
-    display: inline-block;
-   }
+
+.btn-primary:hover {
+    color: #fff;
+   
+    background-color: #feb95b  ;
+    border-color: #fcd6a0  ;
+}
+
+.h1, h1 {
+    color: #feb95b;
+}
