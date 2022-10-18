@@ -15,6 +15,12 @@ jobs:
     steps:
       - checkout
       - run:
+          name: "Build dependencies"
+          command: bundle install
+       - run:
+          name: "Build jeckyll site "
+          command: bundle exec jeckyll build 
+      - run:
           name: "Say hello"
           command: "echo Hello, World!"
 
