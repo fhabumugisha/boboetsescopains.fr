@@ -17,7 +17,7 @@ jobs:
       - run:
           name: "Build dependencies"
           command: bundle install
-       - run:
+      - run:
           name: "Build jeckyll site "
           command: bundle exec jeckyll build 
       - run:
