@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Non autorisé - Bobo et ses copains</title>
+    <link rel="stylesheet" th:href="@{/css/output.css}">
+</head>
+<body class="flex flex-col min-h-screen bg-gray-50">
+    <div class="flex-grow flex items-center justify-center px-4 py-12">
+        <div class="max-w-md w-full text-center">
+            <h1 class="text-9xl font-bold text-orange-600 mb-4">401</h1>
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Authentification requise</h2>
+            <p class="text-lg text-gray-600 mb-8">
+                Vous devez être connecté pour accéder à cette page.
+            </p>
+            <div class="space-x-4">
+                <a th:href="@{/login}" class="btn-primary inline-block">
+                    Se connecter
+                </a>
+                <a th:href="@{/}" class="btn-primary bg-gray-600 hover:bg-gray-700 inline-block">
+                    Retour à l'accueil
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
