@@ -1,6 +1,7 @@
 package fr.boboetsescopains.service;
 
 import fr.boboetsescopains.entity.Book;
+import fr.boboetsescopains.entity.enums.BookStatus;
 import fr.boboetsescopains.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -177,7 +178,7 @@ public class BookService {
     /**
      * Change book status
      */
-    public Book changeBookStatus(Long id, Book.BookStatus newStatus) {
+    public Book changeBookStatus(Long id, BookStatus newStatus) {
         Book book = bookRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Livre non trouvé avec l'ID: " + id));
 
@@ -203,7 +204,7 @@ public class BookService {
     /**
      * Get book count by status
      */
-    public Long countByStatus(Book.BookStatus status) {
+    public Long countByStatus(BookStatus status) {
         return bookRepository.countByStatus(status);
     }
 

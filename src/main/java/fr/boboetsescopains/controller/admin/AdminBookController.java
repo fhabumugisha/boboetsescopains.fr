@@ -1,7 +1,9 @@
 package fr.boboetsescopains.controller.admin;
 
+import fr.boboetsescopains.entity.enums.BookStatus;
+
 import fr.boboetsescopains.entity.Book;
-import fr.boboetsescopains.service.AIService;
+// import fr.boboetsescopains.service.AIService;
 import fr.boboetsescopains.service.BookService;
 import io.github.wimdeblauwe.htmx.spring.boot.mvc.HtmxResponse;
 import io.github.wimdeblauwe.htmx.spring.boot.mvc.HxRequest;
@@ -20,12 +22,16 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/admin/books")
-@RequiredArgsConstructor
+// @RequiredArgsConstructor
 @Slf4j
 public class AdminBookController {
 
     private final BookService bookService;
-    private final AIService aiService;
+    // private final AIService aiService;
+
+    public AdminBookController(BookService bookService) {
+        this.bookService = bookService;
+    }
 
     /**
      * List all books
@@ -34,8 +40,8 @@ public class AdminBookController {
     public String listBooks(Model model) {
         List<Book> books = bookService.getAllBooks();
         model.addAttribute("books", books);
-        model.addAttribute("publishedCount", bookService.countByStatus(Book.BookStatus.PUBLISHED));
-        model.addAttribute("draftCount", bookService.countByStatus(Book.BookStatus.DRAFT));
+        model.addAttribute("publishedCount", bookService.countByStatus(BookStatus.PUBLISHED));
+        model.addAttribute("draftCount", bookService.countByStatus(BookStatus.DRAFT));
         return "admin/books/list";
     }
 
@@ -150,7 +156,7 @@ public class AdminBookController {
     @PostMapping("/{id}/status")
     public String changeStatus(
             @PathVariable Long id,
-            @RequestParam Book.BookStatus status,
+            @RequestParam BookStatus status,
             Model model) {
 
         Book book = bookService.changeBookStatus(id, status);
@@ -158,9 +164,10 @@ public class AdminBookController {
         return "admin/books/fragments :: book-row";
     }
 
-    /**
-     * Generate description with AI (HTMX)
-     */
+    /*
+     * AI features temporarily disabled
+     * Uncomment when Spring AI is enabled
+
     @HxRequest
     @PostMapping("/generate-description")
     @ResponseBody
@@ -171,13 +178,11 @@ public class AdminBookController {
         return aiService.generateBookDescription(title, keywords);
     }
 
-    /**
-     * Improve description with AI (HTMX)
-     */
     @HxRequest
     @PostMapping("/improve-description")
     @ResponseBody
     public String improveDescription(@RequestParam String description) {
         return aiService.improveDescription(description);
     }
+    */
 }

@@ -1,6 +1,7 @@
 package fr.boboetsescopains.repository;
 
 import fr.boboetsescopains.entity.Book;
+import fr.boboetsescopains.entity.enums.BookStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -13,9 +14,9 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     Optional<Book> findBySlug(String slug);
 
-    List<Book> findByStatusOrderByDisplayOrderAsc(Book.BookStatus status);
+    List<Book> findByStatusOrderByDisplayOrderAsc(BookStatus status);
 
-    List<Book> findByFeaturedTrueAndStatusOrderByDisplayOrderAsc(Book.BookStatus status);
+    List<Book> findByFeaturedTrueAndStatusOrderByDisplayOrderAsc(BookStatus status);
 
     @Query("SELECT b FROM Book b WHERE b.status = 'PUBLISHED' ORDER BY b.displayOrder ASC, b.createdAt DESC")
     List<Book> findAllPublishedBooks();
@@ -25,5 +26,5 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     boolean existsBySlug(String slug);
 
-    Long countByStatus(Book.BookStatus status);
+    Long countByStatus(BookStatus status);
 }

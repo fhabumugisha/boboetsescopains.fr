@@ -1,5 +1,6 @@
 package fr.boboetsescopains.entity;
 
+import fr.boboetsescopains.entity.enums.BookStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -83,12 +84,6 @@ public class Book {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
-
-    public enum BookStatus {
-        DRAFT,
-        PUBLISHED,
-        ARCHIVED
-    }
 
     public void incrementViews() {
         this.viewsCount = (this.viewsCount == null ? 0 : this.viewsCount) + 1;

@@ -1,5 +1,7 @@
 package fr.boboetsescopains.controller.admin;
 
+import fr.boboetsescopains.entity.enums.BookStatus;
+
 import fr.boboetsescopains.entity.Book;
 import fr.boboetsescopains.service.BookService;
 import lombok.RequiredArgsConstructor;
@@ -17,8 +19,8 @@ public class AdminDashboardController {
 
     @GetMapping("/dashboard")
     public String dashboard(Model model) {
-        model.addAttribute("publishedCount", bookService.countByStatus(Book.BookStatus.PUBLISHED));
-        model.addAttribute("draftCount", bookService.countByStatus(Book.BookStatus.DRAFT));
+        model.addAttribute("publishedCount", bookService.countByStatus(BookStatus.PUBLISHED));
+        model.addAttribute("draftCount", bookService.countByStatus(BookStatus.DRAFT));
         model.addAttribute("totalBooks", bookService.getAllBooks().size());
         model.addAttribute("recentBooks", bookService.getAllBooks().stream().limit(5).toList());
 

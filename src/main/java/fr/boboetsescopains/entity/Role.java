@@ -1,5 +1,6 @@
 package fr.boboetsescopains.entity;
 
+import fr.boboetsescopains.entity.enums.RoleName;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,9 +32,4 @@ public class Role {
     @ManyToMany(mappedBy = "roles")
     @Builder.Default
     private Set<User> users = new HashSet<>();
-
-    public enum RoleName {
-        ROLE_USER,
-        ROLE_ADMIN
-    }
 }
