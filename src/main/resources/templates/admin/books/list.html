@@ -1,26 +1,14 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/admin-base}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestion des livres - Admin</title>
-    <link rel="stylesheet" th:href="@{/css/output.css}">
-    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+    <title>Gestion des livres</title>
 </head>
-<body class="bg-gray-50">
-    <nav class="bg-gray-900 text-white shadow-lg">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <h1 class="text-2xl font-bold">Gestion des Livres</h1>
-            <div class="space-x-4">
-                <a th:href="@{/admin/dashboard}" class="text-white hover:text-blue-400">Dashboard</a>
-                <form th:action="@{/logout}" method="post" class="inline">
-                    <button type="submit" class="btn-primary bg-red-600 hover:bg-red-700">Déconnexion</button>
-                </form>
-            </div>
-        </div>
-    </nav>
+<body>
 
-    <div class="container mx-auto px-4 py-8">
+    <div layout:fragment="content">
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-3xl font-bold">Tous les livres</h2>
             <a th:href="@{/admin/books/new}" class="btn-primary bg-green-600 hover:bg-green-700">
@@ -80,6 +68,8 @@
                 </tbody>
             </table>
         </div>
+
     </div>
+
 </body>
 </html>

@@ -1,41 +1,15 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/base}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Favicons -->
-    <link rel="apple-touch-icon" sizes="180x180" th:href="@{/images/apple-touch-icon.png}">
-    <link rel="icon" type="image/png" sizes="32x32" th:href="@{/images/favicon-32x32.png}">
-    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/favicon-16x16.png}">
-
-    <!-- Tailwind CSS -->
-    <link rel="stylesheet" th:href="@{/css/output.css}">
-
-    <!-- HTMX -->
-    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
-
-    <!-- Alpine.js -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
-    <title th:text="${pageTitle ?: 'Bobo et ses copains'}">Bobo et ses copains</title>
-
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0TDHX8MH78"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-0TDHX8MH78');
-    </script>
+    <title>Accueil</title>
 </head>
-<body class="flex flex-col min-h-screen bg-gray-50">
-
-    <!-- Header -->
-    <div th:replace="~{fragments/header :: header}"></div>
+<body>
 
     <!-- Main Content -->
-    <main class="flex-grow container mx-auto px-4 py-12">
+    <div layout:fragment="content" class="py-4">
 
         <!-- Books List - Dynamic from Database -->
         <div th:if="${books != null and !books.isEmpty()}">
@@ -70,7 +44,6 @@
                                rel="noopener noreferrer">
                                 Je commande
                             </a>
-                            <script src="https://crafty-speaker-8203.ck.page/commerce.js" async defer></script>
                             <a th:if="${book.ebookLink != null and !book.ebookLink.isEmpty()}"
                                class="btn-primary bg-green-600 hover:bg-green-700"
                                th:href="${book.ebookLink}"
@@ -92,10 +65,12 @@
             <p class="text-gray-600">Revenez bientôt pour découvrir nos nouveaux livres !</p>
         </div>
 
-    </main>
+    </div>
 
-    <!-- Footer -->
-    <div th:replace="~{fragments/footer :: footer}"></div>
+    <!-- Page-specific scripts -->
+    <th:block layout:fragment="extra-scripts">
+        <script src="https://crafty-speaker-8203.ck.page/commerce.js" async defer></script>
+    </th:block>
 
 </body>
 </html>

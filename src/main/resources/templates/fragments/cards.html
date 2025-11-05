@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Card Fragments</title>
+</head>
+<body>
+
+    <!-- Simple Card -->
+    <div th:fragment="card"
+         class="bg-white rounded-lg shadow-lg p-6">
+        <!-- Content goes here -->
+    </div>
+
+    <!-- Card with Header -->
+    <div th:fragment="card-with-header(title)">
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div class="bg-gray-50 px-6 py-4 border-b">
+                <h3 th:text="${title}" class="text-xl font-bold text-gray-900">Title</h3>
+            </div>
+            <div class="p-6">
+                <!-- Content goes here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Stat Card -->
+    <div th:fragment="stat-card(title, value, colorClass)"
+         class="bg-white rounded-lg shadow-lg p-6">
+        <h3 th:text="${title}" class="text-gray-600 text-sm font-semibold mb-2">Stat Title</h3>
+        <p th:text="${value}"
+           th:class="'text-4xl font-bold ' + ${colorClass}"
+           class="text-4xl font-bold">0</p>
+    </div>
+
+    <!-- Book Card -->
+    <div th:fragment="book-card(book)"
+         class="card animate-fade-in mb-8">
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="md:col-span-1">
+                <a th:href="@{/books/{slug}(slug=${book.slug})}">
+                    <img th:src="${book.coverImageUrl != null ? book.coverImageUrl : '/images/placeholder-book.png'}"
+                         th:alt="${book.title}"
+                         class="w-full h-auto rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                </a>
+            </div>
+            <div class="md:col-span-2">
+                <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    <a th:href="@{/books/{slug}(slug=${book.slug})}"
+                       th:text="${book.title}"
+                       class="hover:text-blue-600 transition">
+                        Book Title
+                    </a>
+                </h1>
+                <p class="text-lg text-gray-700 leading-relaxed mb-6"
+                   th:utext="${book.fullDescription != null ? book.fullDescription : book.shortDescription}">
+                    Book Description
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a th:if="${book.amazonLink != null and !book.amazonLink.isEmpty()}"
+                       th:href="${book.amazonLink}"
+                       class="btn-primary"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        Je commande
+                    </a>
+                    <a th:if="${book.ebookLink != null and !book.ebookLink.isEmpty()}"
+                       class="btn-primary bg-green-600 hover:bg-green-700"
+                       th:href="${book.ebookLink}"
+                       data-commerce
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        J'achète l'E-Book
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Empty State -->
+    <div th:fragment="empty-state(title, message)"
+         class="text-center py-12">
+        <h2 th:text="${title}" class="text-2xl font-bold text-gray-700 mb-4">Empty State</h2>
+        <p th:text="${message}" class="text-gray-600">No content available</p>
+    </div>
+
+</body>
+</html>

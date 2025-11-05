@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Alerts Fragments</title>
+</head>
+<body>
+
+    <!-- Success Alert -->
+    <div th:fragment="success-alert(message)"
+         class="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
+        <p th:text="${message}">Success message</p>
+    </div>
+
+    <!-- Error Alert -->
+    <div th:fragment="error-alert(message)"
+         class="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
+        <p th:text="${message}">Error message</p>
+    </div>
+
+    <!-- Warning Alert -->
+    <div th:fragment="warning-alert(message)"
+         class="mb-4 p-4 bg-yellow-100 border border-yellow-400 text-yellow-700 rounded">
+        <p th:text="${message}">Warning message</p>
+    </div>
+
+    <!-- Info Alert -->
+    <div th:fragment="info-alert(message)"
+         class="mb-4 p-4 bg-blue-100 border border-blue-400 text-blue-700 rounded">
+        <p th:text="${message}">Info message</p>
+    </div>
+
+    <!-- Success Alert - Auto Dismiss with Alpine.js -->
+    <div th:fragment="success-alert-dismissible(message)"
+         x-data="{ show: true }"
+         x-show="show"
+         x-init="setTimeout(() => show = false, 5000)"
+         class="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded flex justify-between items-center">
+        <p th:text="${message}">Success message</p>
+        <button @click="show = false" class="text-green-700 hover:text-green-900 font-bold">×</button>
+    </div>
+
+    <!-- Error Alert - Dismissible with Alpine.js -->
+    <div th:fragment="error-alert-dismissible(message)"
+         x-data="{ show: true }"
+         x-show="show"
+         class="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded flex justify-between items-center">
+        <p th:text="${message}">Error message</p>
+        <button @click="show = false" class="text-red-700 hover:text-red-900 font-bold">×</button>
+    </div>
+
+</body>
+</html>

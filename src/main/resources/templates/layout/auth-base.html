@@ -15,40 +15,19 @@
     <!-- Tailwind CSS -->
     <link rel="stylesheet" th:href="@{/css/output.css}">
 
-    <!-- HTMX -->
-    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
-
-    <!-- Alpine.js -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
     <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Bobo et ses copains</title>
-
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0TDHX8MH78"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-0TDHX8MH78');
-    </script>
 
     <!-- Additional page-specific head content -->
     <th:block layout:fragment="extra-head"></th:block>
 </head>
 <body class="flex flex-col min-h-screen bg-gray-50">
 
-    <!-- Header -->
-    <header th:replace="~{fragments/header :: header}"></header>
-
-    <!-- Main Content -->
-    <main class="flex-grow container mx-auto px-4 py-8">
+    <!-- Centered Content -->
+    <div class="flex-grow flex items-center justify-center px-4 py-12">
         <div layout:fragment="content">
             <!-- Page content goes here -->
         </div>
-    </main>
-
-    <!-- Footer -->
-    <footer th:replace="~{fragments/footer :: footer}"></footer>
+    </div>
 
     <!-- Additional page-specific scripts -->
     <th:block layout:fragment="extra-scripts"></th:block>

@@ -1,19 +1,16 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/admin-base}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="${isEdit ? 'Modifier le livre' : 'Ajouter un livre'}">Formulaire Livre</title>
-    <link rel="stylesheet" th:href="@{/css/output.css}">
 </head>
-<body class="bg-gray-50">
-    <nav class="bg-gray-900 text-white shadow-lg">
-        <div class="container mx-auto px-4 py-4">
-            <h1 class="text-2xl font-bold" th:text="${isEdit ? 'Modifier le livre' : 'Ajouter un livre'}"></h1>
-        </div>
-    </nav>
+<body>
 
-    <div class="container mx-auto px-4 py-8 max-w-4xl">
+    <div layout:fragment="content" class="max-w-4xl">
+        <h2 class="text-3xl font-bold mb-6" th:text="${isEdit ? 'Modifier le livre' : 'Ajouter un livre'}"></h2>
+
         <div class="bg-white rounded-lg shadow-lg p-8">
             <form th:action="${isEdit ? '/admin/books/' + book.id : '/admin/books'}"
                   th:object="${book}"
@@ -100,6 +97,8 @@
                 </div>
             </form>
         </div>
+
     </div>
+
 </body>
 </html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" th:href="@{/images/apple-touch-icon.png}">
+    <link rel="icon" type="image/png" sizes="32x32" th:href="@{/images/favicon-32x32.png}">
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/favicon-16x16.png}">
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" th:href="@{/css/output.css}">
+
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <title layout:title-pattern="$CONTENT_TITLE - Admin - $LAYOUT_TITLE">Bobo et ses copains</title>
+
+    <!-- Additional page-specific head content -->
+    <th:block layout:fragment="extra-head"></th:block>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Admin Navbar -->
+    <nav class="bg-gray-900 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-6">
+                <h1 class="text-2xl font-bold">Admin - Bobo et ses copains</h1>
+                <div class="hidden md:flex space-x-4">
+                    <a th:href="@{/admin/dashboard}" class="hover:text-blue-400 transition">Dashboard</a>
+                    <a th:href="@{/admin/books}" class="hover:text-blue-400 transition">Livres</a>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span sec:authentication="name" class="text-gray-300"></span>
+                <a th:href="@{/}" class="text-sm hover:text-blue-400 transition" target="_blank">Voir le site</a>
+                <form th:action="@{/logout}" method="post" class="inline">
+                    <button type="submit" class="btn-primary bg-red-600 hover:bg-red-700">
+                        Déconnexion
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <div layout:fragment="content">
+            <!-- Page content goes here -->
+        </div>
+    </div>
+
+    <!-- Additional page-specific scripts -->
+    <th:block layout:fragment="extra-scripts"></th:block>
+
+</body>
+</html>

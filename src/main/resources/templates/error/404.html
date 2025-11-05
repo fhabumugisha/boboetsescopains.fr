@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/auth-base}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page non trouvée - Bobo et ses copains</title>
-    <link rel="stylesheet" th:href="@{/css/output.css}">
+    <title>Page non trouvée</title>
 </head>
-<body class="flex flex-col min-h-screen bg-gray-50">
-    <div class="flex-grow flex items-center justify-center px-4 py-12">
-        <div class="max-w-md w-full text-center">
-            <h1 class="text-9xl font-bold text-blue-600 mb-4">404</h1>
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">Page non trouvée</h2>
-            <p class="text-lg text-gray-600 mb-8">
-                Désolé, la page que vous recherchez n'existe pas ou a été déplacée.
-            </p>
-            <a th:href="@{/}" class="btn-primary inline-block">
-                Retour à l'accueil
-            </a>
-        </div>
+<body>
+
+    <div layout:fragment="content" class="max-w-md w-full text-center">
+        <h1 class="text-9xl font-bold text-blue-600 mb-4">404</h1>
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Page non trouvée</h2>
+        <p class="text-lg text-gray-600 mb-8">
+            Désolé, la page que vous recherchez n'existe pas ou a été déplacée.
+        </p>
+        <a th:href="@{/}" class="btn-primary inline-block">
+            Retour à l'accueil
+        </a>
     </div>
+
 </body>
 </html>
