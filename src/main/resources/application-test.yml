@@ -1,0 +1,67 @@
+spring:
+  application:
+    name: boboetsescopains-test
+
+  # H2 In-Memory Database for tests
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  h2:
+    console:
+      enabled: true
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+
+  # Disable Flyway for tests
+  flyway:
+    enabled: false
+
+  thymeleaf:
+    cache: false
+
+  # Disable mail for tests
+  mail:
+    host: localhost
+    port: 25
+
+  # Disable Spring AI for tests (no API key needed)
+  ai:
+    openai:
+      api-key: test-key
+      chat:
+        options:
+          model: gpt-4o-mini
+          temperature: 0.7
+
+# Mock AWS S3 for tests
+aws:
+  s3:
+    bucket-name: test-bucket
+    region: eu-west-3
+    access-key: test-access-key
+    secret-key: test-secret-key
+
+# Test application configuration
+app:
+  base-url: http://localhost:8080
+  admin:
+    email: admin@test.com
+
+server:
+  port: 0  # Random port for tests
+
+logging:
+  level:
+    fr.boboetsescopains: DEBUG
+    org.springframework: WARN
+    org.hibernate: WARN
