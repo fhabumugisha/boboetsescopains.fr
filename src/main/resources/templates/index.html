@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/base}">
+<head>
+    <title>Accueil</title>
+</head>
+<body>
+
+    <!-- Main Content -->
+    <div layout:fragment="content" class="py-4">
+
+        <!-- Books List - Dynamic from Database -->
+        <div th:if="${books != null and !books.isEmpty()}">
+            <div th:each="book : ${books}" class="card animate-fade-in mb-8">
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="md:col-span-1">
+                        <a th:href="@{/books/{slug}(slug=${book.slug})}">
+                            <img th:src="${book.coverImageUrl != null ? book.coverImageUrl : '/images/placeholder-book.png'}"
+                                 th:alt="${book.title}"
+                                 class="w-full h-auto rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                        </a>
+                    </div>
+                    <div class="md:col-span-2">
+                        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                            <a th:href="@{/books/{slug}(slug=${book.slug})}"
+                               th:text="${book.title}"
+                               class="hover:text-blue-600 transition">
+                                Titre du livre
+                            </a>
+                        </h1>
+                        <p class="text-lg text-gray-700 leading-relaxed mb-6"
+                           th:utext="${book.fullDescription != null ? book.fullDescription : book.shortDescription}">
+                            Description du livre
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a th:if="${book.amazonLink != null and !book.amazonLink.isEmpty()}"
+                               th:href="${book.amazonLink}"
+                               class="btn-primary"
+                               tabindex="-1"
+                               role="button"
+                               target="_blank"
+                               rel="noopener noreferrer">
+                                Je commande
+                            </a>
+                            <a th:if="${book.ebookLink != null and !book.ebookLink.isEmpty()}"
+                               class="btn-primary bg-green-600 hover:bg-green-700"
+                               th:href="${book.ebookLink}"
+                               data-commerce
+                               target="_blank"
+                               rel="noopener noreferrer">
+                                J'achète l'E-Book
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Empty state -->
+        <div th:if="${books == null or books.isEmpty()}"
+             class="text-center py-12">
+            <h2 class="text-2xl font-bold text-gray-700 mb-4">Aucun livre disponible pour le moment</h2>
+            <p class="text-gray-600">Revenez bientôt pour découvrir nos nouveaux livres !</p>
+        </div>
+
+    </div>
+
+    <!-- Page-specific scripts -->
+    <th:block layout:fragment="extra-scripts">
+        <script src="https://crafty-speaker-8203.ck.page/commerce.js" async defer></script>
+    </th:block>
+
+</body>
+</html>

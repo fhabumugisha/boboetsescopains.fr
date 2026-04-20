@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Form Fragments</title>
+</head>
+<body>
+
+    <!-- Text Input -->
+    <div th:fragment="text-input(id, label, field, required, placeholder)"
+         class="mb-6">
+        <label th:for="${id}"
+               th:text="${label} + (${required} ? ' *' : '')"
+               class="block text-gray-700 font-semibold mb-2">
+            Label
+        </label>
+        <input type="text"
+               th:id="${id}"
+               th:field="${field}"
+               th:required="${required}"
+               th:placeholder="${placeholder}"
+               class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+    </div>
+
+    <!-- Textarea -->
+    <div th:fragment="textarea(id, label, field, rows, placeholder)"
+         class="mb-6">
+        <label th:for="${id}"
+               th:text="${label}"
+               class="block text-gray-700 font-semibold mb-2">
+            Label
+        </label>
+        <textarea th:id="${id}"
+                  th:field="${field}"
+                  th:rows="${rows ?: 3}"
+                  th:placeholder="${placeholder}"
+                  class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </textarea>
+    </div>
+
+    <!-- Number Input -->
+    <div th:fragment="number-input(id, label, field, step, min, max)"
+         class="mb-6">
+        <label th:for="${id}"
+               th:text="${label}"
+               class="block text-gray-700 font-semibold mb-2">
+            Label
+        </label>
+        <input type="number"
+               th:id="${id}"
+               th:field="${field}"
+               th:step="${step}"
+               th:min="${min}"
+               th:max="${max}"
+               class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+    </div>
+
+    <!-- Select Dropdown -->
+    <div th:fragment="select(id, label, field, options)"
+         class="mb-6">
+        <label th:for="${id}"
+               th:text="${label}"
+               class="block text-gray-700 font-semibold mb-2">
+            Label
+        </label>
+        <select th:id="${id}"
+                th:field="${field}"
+                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option th:each="option : ${options}"
+                    th:value="${option.value}"
+                    th:text="${option.label}">
+            </option>
+        </select>
+    </div>
+
+    <!-- Checkbox -->
+    <div th:fragment="checkbox(id, label, field)"
+         class="mb-6">
+        <label class="flex items-center">
+            <input type="checkbox"
+                   th:id="${id}"
+                   th:field="${field}"
+                   class="mr-2">
+            <span th:text="${label}"
+                  class="text-gray-700 font-semibold">
+                Label
+            </span>
+        </label>
+    </div>
+
+    <!-- File Upload -->
+    <div th:fragment="file-upload(id, label, name, accept, currentUrl)"
+         class="mb-6">
+        <label th:for="${id}"
+               th:text="${label}"
+               class="block text-gray-700 font-semibold mb-2">
+            Label
+        </label>
+        <input type="file"
+               th:id="${id}"
+               th:name="${name}"
+               th:accept="${accept}"
+               class="w-full px-4 py-2 border rounded-lg">
+        <div th:if="${currentUrl != null}" class="mt-2">
+            <img th:src="${currentUrl}" alt="Current" class="h-32 rounded">
+        </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button th:fragment="submit-button(text)"
+            type="submit"
+            th:text="${text}"
+            class="btn-primary">
+        Submit
+    </button>
+
+    <!-- Cancel Link -->
+    <a th:fragment="cancel-link(url, text)"
+       th:href="${url}"
+       th:text="${text}"
+       class="btn-primary bg-gray-600 hover:bg-gray-700">
+        Cancel
+    </a>
+
+</body>
+</html>

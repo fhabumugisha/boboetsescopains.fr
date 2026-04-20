@@ -1,11 +1,23 @@
 {
   "name": "boboetsescopains",
   "version": "1.0.0",
-  "description": "",
+  "description": "Site web pour Bobo et ses copains avec Tailwind CSS",
   "main": "index.js",
   "scripts": {
+    "build:css": "npx tailwindcss -i ./src/main/resources/static/css/input.css -o ./src/main/resources/static/css/output.css --minify",
+    "watch:css": "npx tailwindcss -i ./src/main/resources/static/css/input.css -o ./src/main/resources/static/css/output.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "tailwindcss",
+    "htmx",
+    "alpinejs"
+  ],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.0.0-beta.13",
+    "tailwindcss": "^4.0.0-beta.13",
+    "daisyui": "^4.12.14"
+  }
 }

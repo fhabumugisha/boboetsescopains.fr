@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/auth-base}">
+<head>
+    <title>Non autorisé</title>
+</head>
+<body>
+
+    <div layout:fragment="content" class="max-w-md w-full text-center">
+        <h1 class="text-9xl font-bold text-orange-600 mb-4">401</h1>
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Authentification requise</h2>
+        <p class="text-lg text-gray-600 mb-8">
+            Vous devez être connecté pour accéder à cette page.
+        </p>
+        <div class="space-x-4">
+            <a th:href="@{/login}" class="btn-primary inline-block">
+                Se connecter
+            </a>
+            <a th:href="@{/}" class="btn-primary bg-gray-600 hover:bg-gray-700 inline-block">
+                Retour à l'accueil
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

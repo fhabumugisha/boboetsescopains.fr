@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+/* Tailwind CSS 4 - CSS-based configuration */
+@theme {
+  --color-primary: #0d6efd;
+  --color-secondary: #6c757d;
+}
+
+/* Custom styles */
+@layer components {
+  .btn-primary {
+    @apply bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 inline-block text-center;
+  }
+
+  .card {
+    @apply shadow-lg p-6 mb-8 bg-white rounded-lg;
+  }
+}
+
+/* Custom animations */
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

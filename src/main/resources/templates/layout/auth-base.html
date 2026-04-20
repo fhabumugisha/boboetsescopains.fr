@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" th:href="@{/images/apple-touch-icon.png}">
+    <link rel="icon" type="image/png" sizes="32x32" th:href="@{/images/favicon-32x32.png}">
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/favicon-16x16.png}">
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" th:href="@{/css/output.css}">
+
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Bobo et ses copains</title>
+
+    <!-- Additional page-specific head content -->
+    <th:block layout:fragment="extra-head"></th:block>
+</head>
+<body class="flex flex-col min-h-screen bg-gray-50">
+
+    <!-- Centered Content -->
+    <div class="flex-grow flex items-center justify-center px-4 py-12">
+        <div layout:fragment="content">
+            <!-- Page content goes here -->
+        </div>
+    </div>
+
+    <!-- Additional page-specific scripts -->
+    <th:block layout:fragment="extra-scripts"></th:block>
+
+</body>
+</html>
